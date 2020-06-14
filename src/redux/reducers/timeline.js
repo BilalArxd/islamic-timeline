@@ -2,6 +2,8 @@ import * as types from '../types';
 import { createReducer } from './helper';
 import Logger from '../../utils/Logger';
 import GetData from '../../data';
+import persons from '../../data/persons.json';
+import events from '../../data/events.json';
 
 const setMarks = (start, end, total) => {
 	let marks = [];
@@ -23,7 +25,7 @@ const initialState = {
 	max: 670,
 	marks: setMarks(550, 670, 30),
 	selectedYear: 610,
-	data: GetData()
+	data: { events, persons }
 };
 
 const setTimelineField = (state, { field }) => {

@@ -9,6 +9,7 @@ import Grid from '@material-ui/core/Grid';
 import { Chip, Badge, Tooltip } from '@material-ui/core';
 import FaceIcon from '@material-ui/icons/Face';
 import EventAvailableIcon from '@material-ui/icons/EventAvailable';
+import SearchItem from '../../../components/SearchItem';
 
 const useStyles = makeStyles({
 	title: {
@@ -27,47 +28,39 @@ const useStyles = makeStyles({
 
 export default function Person(props) {
 	const classes = useStyles();
-	const { item } = props;
+	const { item, events } = props;
+	const filteredEvents = events.filter((e, i) => {
+		if (e.personIds.includes(item.id)) {
+			return true;
+		}
+		return false;
+	});
+	const relatedEvents = filteredEvents.map((e, i) => {
+		return (
+			<Typography>
+				{i + 1} - {e.title}
+			</Typography>
+		);
+	});
+	const relatedDescription = filteredEvents.map((e, i) => {
+		return (
+			<Typography>
+				{i + 1} - {e.description}
+			</Typography>
+		);
+	});
 
 	return (
-		<Grid item lg={3} md={6} xs={12}>
-			<Card className={classes.paper}>
-				<CardContent>
-					<Typography className={classes.title} color="textSecondary" gutterBottom>
-						{item.name}
-					</Typography>
-					<Typography variant="h5" component="h2">
-						{item.arabicName}
-					</Typography>
-					<Typography className={classes.pos} color="textSecondary">
-						{`Born: ${item.born} - Died: ${item.died}`}
-					</Typography>
-					<Typography variant="body2" component="p" />
-				</CardContent>
-				<CardActions>
-					<Chip icon={<FaceIcon />} label={item.type} color="primary" />
-					<Badge badgeContent={item.events.length} color="primary">
-						<Tooltip
-							title={
-								<React.Fragment>
-									<Typography>Events</Typography>
-
-									{item.events &&
-										item.events.map((event, i) => {
-											return (
-												<Typography>
-													{i + 1} - {event.title}
-												</Typography>
-											);
-										})}
-								</React.Fragment>
-							}
-						>
-							<Chip clickable icon={<EventAvailableIcon />} label={'EVENTS'} color="default" />
-						</Tooltip>
-					</Badge>
-				</CardActions>
-			</Card>
-		</Grid>
+		<SearchItem
+			title={item.arabicName}
+			subTitle={item.name}
+			description={relatedDescription}
+			year={`Born: ${item.born} - Died: ${item.died}`}
+			primaryTagIcon={<FaceIcon />}
+			secondaryTagTitle={'Related Events'}
+			secondaryTagIcon={<EventAvailableIcon />}
+			secondaryTagCount={filteredEvents.length}
+			secondaryTagDescription={relatedEvents}
+		/>
 	);
 }

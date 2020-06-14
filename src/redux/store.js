@@ -14,8 +14,8 @@ const persistConfig = {
 	stateReconciler: autoMergeLevel2,
 	blacklist: [ 'timeline', 'home' ]
 };
-const persistedReducer = persistReducer(persistConfig, reducer);
-const debug = true;
+// const persistedReducer = persistReducer(persistConfig, reducer);
+const debug = false;
 const middleware = debug ? composeWithDevTools(applyMiddleware(thunk)) : applyMiddleware(thunk);
-export const store = createStore(persistedReducer, middleware);
-export const persistor = persistStore(store);
+export const store = createStore(reducer, middleware);
+//export const persistor = persistStore(store);
