@@ -1,0 +1,38 @@
+[
+	{
+		"id": 1,
+		"title": "First revelation",
+		"mainPerson": 1,
+		"type": "EVENT",
+		"description": "According to Islamic tradition, during one such occasion while he was in contemplation, the archangel Gabriel appeared before him in the year 610 CE and said, ‘Recite’, upon which he replied, ‘I am unable to recite’. Thereupon the angel caught hold of him and embraced him heavily. This happened two more time after which the angel commanded Muhammad to recite the following verses:Proclaim! (or read!) in the name of thy Lord and Cherisher, Who Created man, out of a (mere) clot of congealed blood:Proclaim! And thy Lord is Most Bountiful,- Who taught (the use of) the pen,-Taught man that which he knew not.",
+		"year": 610,
+		"personIds": [ 1 ]
+	},
+	{
+		"id": 2,
+		"title": "First Muslim Convert",
+		"mainPerson": 2,
+		"type": "EVENT",
+		"description": "When Muhammad reported his first revelation from the Angel Gabriel (Jibril), Khadija was the first person to convert to Islam.",
+		"year": 610,
+		"personIds": [ 1, 2 ]
+	},
+	{
+		"id": 3,
+		"title": "First Male Muslim Convert",
+		"mainPerson": 2,
+		"type": "EVENT",
+		"description": "Ali ibn Abi Talib is considered the first Muslim convert. The early historian Ibn Ishaq and Tabari puts Ali Muhammad's cousin and son-in-law as the first male convert; Muhammad ibn Jarir al-Tabari presents three candidates, and does not decide between them. One account in Tabari says that the first male convert was Zayd ibn Harithah, a freed slave who had become Muhammad's adopted son. It is known that Ali was indeed the first person to convert to Islam, however some dispute this arguing he was only 12 years old at the time he embraced Islam.",
+		"year": 610,
+		"personIds": [ 1, 3 ]
+	},
+	{
+		"id": 4,
+		"title": "First Public Dawah",
+		"mainPerson": 1,
+		"type": "EVENT",
+		"description": "Around 613, Muhammad began to preach to the public(Quran 26:214).[8] Most Meccans ignored him and mocked him, though a few became his followers. There were three main groups of early converts to Islam: younger brothers and sons of great merchants; people who had fallen out of the first rank in their tribe or failed to attain it; and the weak, mostly unprotected foreigners.",
+		"year": 613,
+		"personIds": [ 1 ]
+	}
+]

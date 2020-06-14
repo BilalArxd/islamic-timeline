@@ -1,0 +1,35 @@
+[
+	{
+		"id": 1,
+		"name": "Muhammad صلی اللہ علیہ وآلہ وسلم  ",
+		"arabicName": "مُحَمَّد ٱبْن عَبْد ٱلله",
+		"type": "PERSON",
+		"dob": "22-04-571",
+		"dod": "08-06-632",
+		"born": 571,
+		"died": 632,
+		"events": []
+	},
+	{
+		"id": 2,
+		"name": "Khadijah bint Khuwaylid",
+		"arabicName": "خَدِيجَة ٱبْنَت خُوَيْلِد",
+		"type": "PERSON",
+		"dob": "",
+		"dod": "",
+		"born": 555,
+		"died": 619,
+		"events": []
+	},
+	{
+		"id": 3,
+		"name": "Ali ibn Abi Talib",
+		"arabicName": "عَلِيّ ٱبْن أَبِي طَالِب",
+		"type": "PERSON",
+		"dob": "",
+		"dod": "",
+		"born": 601,
+		"died": 661,
+		"events": []
+	}
+]
