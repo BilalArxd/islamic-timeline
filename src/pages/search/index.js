@@ -3,62 +3,81 @@ import { connect } from 'react-redux';
 import { withStyles, Typography } from '@material-ui/core';
 import Person from './components/Person';
 import Event from './components/Event';
-import Grid from '@material-ui/core/Grid';
-import GetData from '../../data';
 
 export class Search extends Component {
+	constructor(props) {
+		super(props);
+		//const length = props.items.length;
+		this.state = {
+			//items: props.items.slice(0, 1),
+			//hasMore: 1 < props.items.length
+		};
+	}
+
+	// getSnapshotBeforeUpdate(prevProps, prevState) {
+	// 	if (prevProps.items.length !== this.props.items.length) {
+	// 		return true;
+	// 	}
+	// 	return null;
+	// }
+	// componentDidUpdate(prevProps, prevState, snapshot) {
+	// 	// If we have a snapshot value, we've just added new items.
+	// 	// Adjust scroll so these new items don't push the old ones out of view.
+	// 	// (snapshot here is the value returned from getSnapshotBeforeUpdate)
+	// 	if (snapshot !== null) {
+	// 	}
+	// }
+
+	componentDidMount() {
+		//this.recursive();
+	}
+
+	recursive = () => {
+		setTimeout(() => {
+			let hasMore = this.state.items.length + 1 < this.props.items.length;
+			this.setState((prev, props) => ({
+				items: this.props.items.slice(0, prev.items.length + 100),
+				hasMore
+			}));
+			if (hasMore) this.recursive();
+		}, 0);
+	};
 	render() {
-		const { classes, data, year } = this.props;
+		const { classes, data, items } = this.props;
 		const { events, persons } = data;
-		const filteredEvents = events.filter((item) => {
-			return item.year === year;
-		});
-		const filteredPersons = persons.filter((item) => {
-			return item.born < year && item.died > year;
-		});
-		//Logger.log(`Search.render.data => ${JSON.stringify(data)}`);
 
 		return (
 			<div className={classes.root}>
-				<Grid container spacing={2}>
-					<Typography variant="h5" style={{ margin: 10 }}>
-						Events
+				{/* {this.state.hasMore ? (
+					<Typography variant="h6" style={{ margin: 10 }}>
+						{`Loading...`}
 					</Typography>
-					<Grid container spacing={1}>
-						{filteredEvents && filteredEvents.length > 0 ? (
-							filteredEvents.map((item, index) => {
-								return <Event item={item} persons={persons} key={`event-${index}`} />;
-							})
+				) : null} */}
+				<Typography variant="subtitle1" style={{ margin: 10 }}>
+					{`Found ${items.length} persons and ${events.length} events for selected year.`}
+				</Typography>
+
+				{items && items.length > 0 ? (
+					items.map((item) => {
+						return item.type === 'EVENT' ? (
+							<Event item={item} persons={persons} key={`event-${Math.random()}-${Math.random()}`} />
 						) : (
-							<Typography variant="h6" style={{ margin: 10 }}>
-								No event available for selected year
-							</Typography>
-						)}
-					</Grid>
-					<br />
-					<br />
-					<Typography variant="h5" style={{ margin: 10 }}>
-						Persons
+							<Person item={item} events={events} key={`person-${Math.random()}-${Math.random()}`} />
+						);
+					})
+				) : (
+					<Typography variant="h6" style={{ margin: 10 }}>
+						No data available for selected year.
 					</Typography>
-					<Grid container spacing={1}>
-						{filteredPersons && filteredPersons.length > 0 ? (
-							filteredPersons.map((item, index) => {
-								return <Person item={item} events={events} key={`person-${index}`} />;
-							})
-						) : (
-							<Typography variant="h6" style={{ margin: 10 }}>
-								No person available for selected year
-							</Typography>
-						)}
-					</Grid>
-				</Grid>
+				)}
 			</div>
 		);
 	}
 }
 const useStyles = (theme) => ({
 	root: {
-		flexGrow: 1
+		justifyContent: 'left',
+		flexWrap: 'wrap'
 	},
 	paper: {
 		padding: theme.spacing(1),
@@ -68,6 +87,7 @@ const useStyles = (theme) => ({
 });
 const mapStateToProps = (state) => ({
 	data: state.timeline.data,
+	items: state.timeline.items,
 	year: state.timeline.selectedYear
 });
 

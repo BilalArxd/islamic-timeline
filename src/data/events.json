@@ -15,7 +15,7 @@
 		"type": "EVENT",
 		"description": "When Muhammad reported his first revelation from the Angel Gabriel (Jibril), Khadija was the first person to convert to Islam.",
 		"year": 610,
-		"personIds": [ 2, 1 ]
+		"personIds": [ 1 ]
 	},
 	{
 		"id": 3,
@@ -24,7 +24,7 @@
 		"type": "EVENT",
 		"description": "Ali ibn Abi Talib is considered the first Muslim convert. The early historian Ibn Ishaq and Tabari puts Ali Muhammad's cousin and son-in-law as the first male convert; Muhammad ibn Jarir al-Tabari presents three candidates, and does not decide between them. One account in Tabari says that the first male convert was Zayd ibn Harithah, a freed slave who had become Muhammad's adopted son. It is known that Ali was indeed the first person to convert to Islam, however some dispute this arguing he was only 12 years old at the time he embraced Islam.",
 		"year": 610,
-		"personIds": [ 3, 1 ]
+		"personIds": [ 5, 1 ]
 	},
 	{
 		"id": 4,

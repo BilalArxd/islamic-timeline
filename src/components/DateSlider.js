@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
 import Actions from '../redux/actions';
 import Logger from '../utils/Logger';
@@ -18,46 +17,26 @@ class DateSlider extends Component {
 		this.props.setTimelineField({
 			selectedYear: value
 		});
-		// if (window.location.pathname !== '/search') {
-		// 	Logger.log(`=> currentUrlPath: ${JSON.stringify(window.location.pathname)}`);
-		// 	Logger.log(`=> redirectedTo: /search`);
-		// 	this.props.history.push('/search');
-		// }
 	};
 
 	render() {
-		const { classes } = this.props;
 		return (
-			<div className={classes.root}>
-				<Slider
-					className={classes.slider}
-					value={this.props.timeline.selectedYear}
-					onChange={this.handleChange}
-					valueLabelDisplay="on"
-					aria-labelledby="discrete-slider-always"
-					marks={this.props.timeline.marks}
-					min={this.props.timeline.min}
-					max={this.props.timeline.max}
-					getAriaValueText={this.valuetext}
-				/>
-				<Typography style={{ color: '#000' }}>Year</Typography>
-			</div>
+			<Slider
+				value={this.props.timeline.selectedYear}
+				onChange={this.handleChange}
+				valueLabelDisplay="on"
+				aria-labelledby="discrete-slider-always"
+				marks={this.props.timeline.marks}
+				min={this.props.timeline.min}
+				max={this.props.timeline.max}
+				getAriaValueText={this.valuetext}
+				step={this.props.timeline.step}
+			/>
 		);
 	}
 }
 
-const useStyles = makeStyles({
-	root: {
-		width: '100%'
-	},
-	label: {
-		backgroundColor: '#F00',
-		textAlign: 'center'
-	},
-	slider: {
-		marginTop: 20
-	}
-});
+const useStyles = makeStyles({});
 
 const mapStateToProps = (state) => ({
 	timeline: state.timeline

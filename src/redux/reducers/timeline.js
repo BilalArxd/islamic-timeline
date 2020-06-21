@@ -1,8 +1,7 @@
 import * as types from '../types';
 import { createReducer } from './helper';
 import Logger from '../../utils/Logger';
-import GetData from '../../data';
-import persons from '../../data/persons.json';
+import persons from '../../data/newPersons.json';
 import events from '../../data/events.json';
 
 const setMarks = (start, end, total) => {
@@ -20,20 +19,44 @@ const setMarks = (start, end, total) => {
 	return marks;
 };
 
+const prepareData = (year) => {
+	const filteredEvents = events.filter((item) => {
+		return item.year === year;
+	});
+	const filteredPersons = persons.filter((item) => {
+		let inBothRange = item.year.from < year && item.year.to > year;
+		//let inOneRange = (item.year.from < year && item.year.to === 0) || (item.year.to > year && item.year.from === 0);
+		return inBothRange;
+	});
+	const items = [ ...filteredPersons, ...filteredEvents ];
+	Logger.log(`prepareData.items => ${items.length}`);
+	return items;
+};
+
 const initialState = {
 	min: 550,
 	max: 670,
+	step: 1,
 	marks: setMarks(550, 670, 30),
 	selectedYear: 610,
-	data: { events, persons }
+	data: { events, persons },
+	items: prepareData(610)
 };
 
 const setTimelineField = (state, { field }) => {
 	Logger.log(`TimelineReducer.setTimelineField`);
-	Logger.log(`=> field: ${JSON.stringify(field)}`);
+	Logger.log(`=> field: ${field.selectedYear}`);
+
+	// let newState = {
+	// 	...state,
+	// 	...field,
+	// 	items: prepareData(field.selectedYear)
+	// };
+	// Logger.log(`=> newState.items: ${newState.items.length}`);
 	return {
 		...state,
-		...field
+		...field,
+		items: prepareData(field.selectedYear)
 	};
 };
 

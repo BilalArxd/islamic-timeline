@@ -12,14 +12,11 @@ import Root from './pages';
 function App() {
 	return (
 		<Provider store={store}>
-			{/* <PersistGate
-				loading={<Loading />}
-				//persistor={persistor}
-			> */}
-			<Router history={history}>
-				<Root />
-			</Router>
-			{/* </PersistGate> */}
+			<PersistGate loading={<Loading />} persistor={persistor}>
+				<Router history={history}>
+					<Root />
+				</Router>
+			</PersistGate>
 		</Provider>
 	);
 }
